@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import loadImage from '../scripts/utils/image-loader';
+import { loadImage } from '../scripts/utils/image-utils';
 
 export default {
   name: 'Canvas',
@@ -42,7 +42,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
- canvas {
-   display: block;
- }
+  canvas {
+    display: block;
+  }
 </style>
