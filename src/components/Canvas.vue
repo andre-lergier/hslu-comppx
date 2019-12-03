@@ -1,5 +1,5 @@
 <template>
-<canvas id="test" ref="fake3dCanvas" :width="width" :height="height"></canvas>
+  <canvas id="test" ref="fake3dCanvas" :width="width" :height="height"></canvas>
 </template>
 
 <script>
@@ -42,4 +42,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+ canvas {
+   display: block;
+ }
 </style>
