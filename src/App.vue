@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <Canvas />
+    <ImageUpload />
   </div>
 </template>
 
 <script>
 import Canvas from './components/Canvas.vue';
+import ImageUpload from './components/ImageUpload.vue';
 
 export default {
   name: 'app',
   components: {
     Canvas,
+    ImageUpload,
   },
 };
 </script>
@@ -18,6 +21,10 @@ export default {
 <style lang="scss">
 * {
   box-sizing: border-box;
+
+  &::before, &::after{
+    box-sizing: border-box;
+  }
 }
 
 body {

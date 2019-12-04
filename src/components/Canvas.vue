@@ -1,5 +1,5 @@
 <template>
-  <canvas id="test" ref="fake3dCanvas" :width="width" :height="height"></canvas>
+  <canvas ref="fake3dCanvas" :width="width" :height="height"></canvas>
 </template>
 
 <script>
@@ -24,6 +24,7 @@ export default {
       this.width = window.innerWidth;
       this.height = window.innerHeight;
     },
+
     async setupCanvas() {
       const canvas = this.$refs.fake3dCanvas;
       const ctx = canvas.getContext('2d');
