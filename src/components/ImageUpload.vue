@@ -20,7 +20,7 @@
         <input type="file" accept='image/*' id="inputImage" @change="uploadImage($event)">
       </label>
 
-      <button v-if="generate" class="btn-primary">Generate</button>
+      <button v-if="generate" class="btn-primary" @click="submit">Generate</button>
     </section>
   </div>
 </template>
@@ -60,6 +60,9 @@ export default {
       } else {
         console.error('files empty!');
       }
+    },
+    submit() {
+      this.$emit('imageChange', this.previewImage);
     },
   },
 };

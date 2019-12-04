@@ -1,9 +1,10 @@
 <template>
   <div>
+    <ImageUpload @imageChange="onImageChange" />
     <div class="controls">
       <label for="port">RunwayML HTTP Server http://localhost:</label>
       <input type="text" id="port" name="port" v-model="port" />
-      <button @click="submitImage">Process Image</button>
+      <!-- <button @click="submitImage">Process Image</button> -->
     </div>
     <img ref="srcImage" />
     <img ref="depthImage" />
@@ -11,9 +12,12 @@
 </template>
 
 <script>
-import { loadImage, dataUrlFromImage } from '../scripts/utils/image-utils';
+import ImageUpload from './ImageUpload.vue';
 
 export default {
+  components: {
+    ImageUpload,
+  },
   data: () => ({
     port: 8000, // default port
   }),
@@ -23,17 +27,13 @@ export default {
     },
   },
   methods: {
-    async submitImage() {
-      // const imageData = toDataURL(img);
-      const img = await loadImage('/emmenbrucke.jpg');
-      img.onload = () => {
-        this.$refs.srcImage.src = img.src;
-        this.sendImage(this.postUrl, {
-          image: dataUrlFromImage(img),
-        });
-      };
+    onImageChange(imgUrl) {
+      console.log(imgUrl);
+      this.$refs.srcImage.src = imgUrl;
+      this.sendImage(this.postUrl, {
+        image: imgUrl,
+      });
     },
-    // send image to runwayML to receive depthData
     async sendImage(url, data) {
       try {
         const response = await fetch(`${url}`, {
