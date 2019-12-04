@@ -1,7 +1,9 @@
-// an attribute will receive data from a buffer
-attribute vec2 positions;
+attribute vec2 aVertexPosition;
+attribute vec2 aTextureCoord;
 
-// gl_Position is a special variable a vertex shader is responsible for setting
+varying vec2 vTextureCoord;
+
 void main() {
-  gl_Position = vec4( positions, 0, 1 );
+  vTextureCoord = aTextureCoord;
+  gl_Position = vec4(aTextureCoord, 0, 1);
 }

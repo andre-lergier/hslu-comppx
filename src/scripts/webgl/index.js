@@ -1,42 +1,27 @@
-import vertex from './shaders/vertex.glsl';
-import fragment from './shaders/fragment.glsl';
-import { compileShader, createProgram } from './modules/shader';
-import initBuffer from './modules/buffer';
+import initShaderProgram from './modules/shader';
+import initBuffers from './modules/buffer';
+import loadTexture from './modules/texture';
+import drawScene from './modules/scene';
 
-const drawScene = (gl) => {
-  const vertexShader = compileShader(gl, vertex, gl.VERTEX_SHADER);
-  const fragmentShader = compileShader(gl, fragment, gl.FRAGMENT_SHADER);
-  // create program
-  const program = createProgram(gl, vertexShader, fragmentShader);
-  // look up location of attribute for the program
-  const positionAttribLocation = gl.getAttribLocation(program, 'positions');
-  // create buffer
-  const positionBuffer = initBuffer(gl);
-  // convert positions to pixels
-  gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
-  // clear canvas
-  gl.clearColor(0, 0, 0, 0);
-  gl.clear(gl.COLOR_BUFFER_BIT);
-  // tell webgl which shader program to execute
-  gl.useProgram(program);
-  // turn on attribute
-  gl.enableVertexAttribArray(positionAttribLocation);
-  // bind the position buffer.
-  gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-  // Tell the attribute how to get data out of positionBuffer (ARRAY_BUFFER)
-  const size = 2; // 2 components per iteration
-  const type = gl.FLOAT; // the data is 32bit floats
-  const normalize = false; // don't normalize the data
-  const stride = 0; // 0 = move forward size * sizeof(type) each iteration to get the next position
-  const offset = 0; // start at the beginning of the buffer
-  gl.vertexAttribPointer(
-    positionAttribLocation,
-    size,
-    type,
-    normalize,
-    stride,
-    offset,
-  );
+const render = async (gl) => {
+  const shaderProgram = initShaderProgram(gl);
+
+  const programInfo = {
+    program: shaderProgram,
+    attribLocations: {
+      vertexPosition: gl.getAttribLocation(shaderProgram, 'aVertexPosition'),
+      textureCoord: gl.getAttribLocation(shaderProgram, 'aTextureCoord'),
+    },
+    uniformLocations: {
+      uImage: gl.getUniformLocation(shaderProgram, 'uSampler'),
+    },
+  };
+
+  const buffers = initBuffers(gl);
+
+  const texture = await loadTexture(gl, '/emmenbrucke.jpg');
+
+  drawScene(gl, programInfo, buffers, texture);
 };
 
-export default drawScene;
+export default render;

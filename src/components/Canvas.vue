@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import drawScene from '../scripts/webgl/index';
+import render from '../scripts/webgl/index';
 
 export default {
   name: 'Canvas',
@@ -20,14 +20,8 @@ export default {
       this.canvas = document.createElement('canvas');
       container.appendChild(this.canvas);
       const gl = this.canvas.getContext('webgl');
-
       this.resize();
-
-      drawScene(gl);
-      const primitiveType = gl.TRIANGLES;
-      const offset = 0;
-      const count = 6;
-      gl.drawArrays(primitiveType, offset, count);
+      render(gl);
     },
     resize() {
       this.canvas.width = window.innerWidth;
