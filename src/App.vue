@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <DepthImage />
     <Canvas />
     <ImageUpload />
   </div>
@@ -8,12 +9,14 @@
 <script>
 import Canvas from './components/Canvas.vue';
 import ImageUpload from './components/ImageUpload.vue';
+import DepthImage from './components/DepthImage.vue';
 
 export default {
   name: 'app',
   components: {
     Canvas,
     ImageUpload,
+    DepthImage,
   },
 };
 </script>
@@ -32,10 +35,6 @@ body {
 }
 
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  font-family: -apple-system, Arial, sans-serif;
 }
 </style>
