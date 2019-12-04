@@ -3,8 +3,8 @@ module.exports = {
     config.module
       .rule('glsl')
       .test(/\.glsl$/)
-      .use('webpack-glsl')
-      .loader('webpack-glsl')
+      .use('webpack-glsl-loader')
+      .loader('webpack-glsl-loader')
       .end();
   },
 };
