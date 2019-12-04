@@ -1,17 +1,19 @@
 <template>
   <div id="app">
-    <Canvas>
-    </Canvas>
+    <DepthImage />
+    <Canvas />
   </div>
 </template>
 
 <script>
 import Canvas from './components/Canvas.vue';
+import DepthImage from './components/DepthImage.vue';
 
 export default {
   name: 'app',
   components: {
     Canvas,
+    DepthImage,
   },
 };
 </script>
@@ -19,6 +21,10 @@ export default {
 <style lang="scss">
 * {
   box-sizing: border-box;
+
+  &::before, &::after{
+    box-sizing: border-box;
+  }
 }
 
 body {
@@ -26,10 +32,6 @@ body {
 }
 
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  font-family: -apple-system, Arial, sans-serif;
 }
 </style>
