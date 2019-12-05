@@ -1,4 +1,4 @@
-import loadImage from '../../utils/image-loader';
+import { loadImage } from '../../utils/image-utils';
 
 const loadTexture = async (gl, url) => {
   const texture = gl.createTexture();
