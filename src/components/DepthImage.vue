@@ -5,7 +5,6 @@
     <div class="controls">
       <label for="port">RunwayML HTTP Server http://localhost:</label>
       <input type="text" id="port" name="port" v-model="port" />
-      <!-- <button @click="submitImage">Process Image</button> -->
     </div>
     <div v-if="debug">
       <img ref="srcImage" />
@@ -38,7 +37,10 @@ export default {
     this.displayImage = new ImageEffect(this.$refs.canvasContainer);
 
     if (this.debug) {
-      Promise.all([loadImage('../test-img.png'), loadImage('../test-img-depth.png')]).then((img) => {
+      Promise.all([
+        loadImage('../test-img.png'),
+        loadImage('../test-img-depth.png'),
+      ]).then((img) => {
         this.displayImage.addTexture([img[0], img[1]]);
       });
     }

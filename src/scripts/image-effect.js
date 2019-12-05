@@ -18,8 +18,8 @@ export default class ImageEffect {
     this.mouseTargetX = 0;
     this.mouseTargetY = 0;
 
-    this.vth = 35;
-    this.hth = 15;
+    this.vth = 20; // vertical threshold
+    this.hth = 20; // horizontal threshold
 
     this.startTime = new Date().getTime(); // Get start time for animating
     this.render = this.render.bind(this);
