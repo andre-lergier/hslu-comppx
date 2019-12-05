@@ -10,7 +10,7 @@ export const loadImage = async (url) => {
   });
 };
 
-export const dataUrlFromImage = (img) => {
+export const imageToDataUrl = (img) => {
   const canvas = document.createElement('canvas');
   canvas.width = img.naturalWidth;
   canvas.height = img.naturalHeight;
@@ -20,3 +20,10 @@ export const dataUrlFromImage = (img) => {
   // Get raw image data
   return canvas.toDataURL('image/jpeg');
 };
+
+export const dataUrlToImage = dataUrl => new Promise((resolve, reject) => {
+  const img = new Image();
+  img.onload = () => resolve(img);
+  img.onerror = () => reject(new Error('Loading image failed'));
+  img.src = dataUrl;
+});

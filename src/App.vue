@@ -1,18 +1,15 @@
 <template>
   <div id="app">
     <DepthImage />
-    <Canvas />
   </div>
 </template>
 
 <script>
-import Canvas from './components/Canvas.vue';
 import DepthImage from './components/DepthImage.vue';
 
 export default {
   name: 'app',
   components: {
-    Canvas,
     DepthImage,
   },
 };

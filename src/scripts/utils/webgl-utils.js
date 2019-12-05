@@ -36,7 +36,8 @@ export class Rect {
     ]);
   }
 
-  static render(gl) {
+  // eslint-disable-next-line class-methods-use-this
+  render(gl) {
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
   }
 }
