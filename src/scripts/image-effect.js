@@ -21,8 +21,6 @@ export default class ImageEffect {
     this.vth = 35;
     this.hth = 15;
 
-    this.textures = [];
-
     this.startTime = new Date().getTime(); // Get start time for animating
     this.render = this.render.bind(this);
 
@@ -80,6 +78,7 @@ export default class ImageEffect {
   start(images) {
     const { gl } = this;
 
+    const textures = [];
     // connect images
     this.imageAspect = images[0].naturalHeight / images[0].naturalWidth;
     for (let i = 0; i < images.length; i += 1) {
@@ -94,7 +93,7 @@ export default class ImageEffect {
 
       // Upload the image into the texture.
       gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, images[i]);
-      this.textures.push(texture);
+      textures.push(texture);
     }
 
     // lookup the sampler locations.
@@ -109,9 +108,9 @@ export default class ImageEffect {
 
     // Set each texture unit to use a particular texture.
     this.gl.activeTexture(this.gl.TEXTURE0);
-    this.gl.bindTexture(this.gl.TEXTURE_2D, this.textures[0]);
+    this.gl.bindTexture(this.gl.TEXTURE_2D, textures[0]);
     this.gl.activeTexture(this.gl.TEXTURE1);
-    this.gl.bindTexture(this.gl.TEXTURE_2D, this.textures[1]);
+    this.gl.bindTexture(this.gl.TEXTURE_2D, textures[1]);
 
     // start application
     this.onResize();
