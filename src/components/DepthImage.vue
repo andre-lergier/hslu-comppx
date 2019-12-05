@@ -28,7 +28,6 @@ export default {
   },
   methods: {
     onImageChange(imgUrl) {
-      console.log(imgUrl);
       this.$refs.srcImage.src = imgUrl;
       this.sendImage(this.postUrl, {
         image: imgUrl,
