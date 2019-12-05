@@ -55,9 +55,11 @@ export default {
             this.generate = true;
           };
         } else {
+          // eslint-disable-next-line no-console
           console.error('wrong file type');
         }
       } else {
+        // eslint-disable-next-line no-console
         console.error('files empty!');
       }
     },
@@ -74,6 +76,7 @@ h1{
   font-weight: 800;
   font-size:2rem;
   background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
