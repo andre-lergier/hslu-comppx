@@ -27,3 +27,14 @@ export const dataUrlToImage = dataUrl => new Promise((resolve, reject) => {
   img.onerror = () => reject(new Error('Loading image failed'));
   img.src = dataUrl;
 });
+
+// optimize image size: resize to w:512
+export const resizeImage = (img, targetWidth, targetHeight) => {
+  const canvas = document.createElement('canvas');
+  const scale = img.originalWidth / 512; // todo: provide fallback if there is no originalWidth
+  canvas.width = targetWidth || img.naturalWidth / scale;
+  canvas.height = targetHeight || img.naturalHeight / scale;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+  return canvas.toDataURL('image/jpeg');
+};
