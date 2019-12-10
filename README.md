@@ -6,14 +6,14 @@ This project was created in the course **Computational Perception extended COMPP
 * [Fabien Jeckelmann](https://github.com/fabjeck)
 * André Lergier
 
-## Idea 
+## Idea / Target :dart:
 The entire group was amazed by the possibilities of machine learning in image processing. In [RunwayML](https://runwayml.com/) we could try out different models and decided to do something using the depth of an image. We had ideas like generating a bokeh portrait effect or an interactive 3D depth effect. 
 We wanted to create something fancy shwing people what an AI can do, so we decited to focus on the 3d depth effect idea.
 
-## Process
+## Process :books:
 
 
-## Webapplication / Usage
+## Webapplication / Usage :computer:
 We created an application with [Vue.js]. To run it, you have to clone this repo and run the following commands.
 To use it, it's necessary to run RunwayML and run a DenseDepth
 
@@ -40,7 +40,7 @@ npm run build
 npm run lint
 ```
 
-## References
+## References :bulb:
 * [Mannequin Challenge Code and Trained Models](https://github.com/google/mannequinchallenge)
 * [This AI Learns About Movement By Watching Frozen People](https://www.youtube.com/watch?v=prMk6Znm4Bc)
 * [Tympanus - How to Create a Fake 3D Image Effect with WebGL](https://tympanus.net/codrops/2019/02/20/how-to-create-a-fake-3d-image-effect-with-webgl/)
