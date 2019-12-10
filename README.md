@@ -27,10 +27,10 @@ With some lines of Javascript we can send an image as a blob from the browser to
 **Example**
 <img src="./doc/DenseDepth-example.jpg" alt="Example Image" style="width:40%; margin-right:20px;"/>
  - 
-<img src="./doc/DenseDepth-example-depthmap.jpg" alt="Example Image Depthmap" style="width:40%;"/>
+<img src="./doc/DenseDepth-example-depthmap.png" alt="Example Image Depthmap" style="width:40%;"/>
 
 ![Example Image](./doc/DenseDepth-example.jpg)
-![Example Image Depthmap](./doc/DenseDepth-example.jpg)
+![Example Image Depthmap](./doc/DenseDepth-example-depthmap.png)
 
 
 ## Webapplication / Usage :computer:
