@@ -29,19 +29,23 @@ With some lines of Javascript we can send an image as a blob from the browser to
 ![Example Image Depthmap](./doc/depthmap-example.png)
 
 
-## Webapplication / Usage :computer:
-We created a web application using [Vue.js](https://vuejs.org/).
+## Webapplication :computer:
+We developed a web application using [Vue.js](https://vuejs.org/).
+As a first step the user can upload an image from its computer. As soon as the browser created a blob of the image, the magic can begin. :tada:
+`André`
 
-
-
+## Usage :electric_plug:
 To run the project locally, you have to run the following commands.
 Additionally it's necessary to run [RunwayML](https://runwayml.com/) with a [DenseDepth](https://github.com/agermanidis/DenseDepth) model. In there you need to go to `Network` and make sure the HTTP Server Address is `http://localhost:8000`. If you use an other port, you have to change that in the file [`src/components/DepthImage.vue`](src/components/DepthImage.vue).
 
 ### Project setup
 ```sh
+cd path/to/your/target/directory/...
+```
+```sh
 git clone https://github.com/andre-lergier/hslu-comppx.git
 ```
-```zsh
+```sh
 npm install
 ```
 
