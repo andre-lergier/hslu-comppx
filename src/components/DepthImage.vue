@@ -1,7 +1,10 @@
 <template>
   <div class="image-wrapper">
     <div class="canvasContainer" ref="canvasContainer" />
-    <ImageUpload @imageChange="onImageChange" />
+    <ImageUpload
+      @imageChange="onImageChange"
+      :class="{ 'hidden' : imageProcessed }"
+    />
     <!-- (comes from this.$emit('imageChange', this.previewImage);) -->
     <div v-if="debug" class="controls">
       <label for="port">RunwayML HTTP Server http://localhost:</label>
@@ -28,6 +31,7 @@ export default {
     port: 8000, // default port
     displayImage: null,
     debug: false,
+    imageProcessed: false,
   }),
   computed: {
     postUrl() {
@@ -78,6 +82,7 @@ export default {
             dataUrlToImage(data.image),
             dataUrlToImage(processedImg.depth_image),
           ]).then((img) => {
+            this.imageProcessed = true;
             this.displayImage.addTexture([img[0], img[1]]);
           });
         }
