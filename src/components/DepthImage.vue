@@ -1,8 +1,9 @@
 <template>
-  <div>
+  <div class="image-wrapper">
     <div class="canvasContainer" ref="canvasContainer" />
     <ImageUpload @imageChange="onImageChange" />
-    <div class="controls">
+    <!-- (comes from this.$emit('imageChange', this.previewImage);) -->
+    <div v-if="debug" class="controls">
       <label for="port">RunwayML HTTP Server http://localhost:</label>
       <input type="text" id="port" name="port" v-model="port" />
     </div>
@@ -109,6 +110,15 @@ img {
   font-family: monospace;
 }
 .canvasContainer {
-  height: 70vh;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.image-wrapper{
+  position: relative;
 }
 </style>

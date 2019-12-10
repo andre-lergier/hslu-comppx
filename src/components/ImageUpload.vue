@@ -134,12 +134,17 @@ figure{
   height: 100vh;
   width: 100%;
   color:white;
-  background: #efefef;
-  background: #161719;
+  background: transparent;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  opacity: 1;
+  transition: all .5s ease-out;
+
+  &.hidden{
+    opacity: 0;
+  }
 
   .form-wrapper{
     // border: 1px solid white;
