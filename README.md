@@ -19,25 +19,23 @@ After some research we started to put our ideas into code.
 Our first and biggest problem was to transform the DensDepth model to TensorflowJS, so we could use it in the browser without any big dependency.
 
 #### Training the model
+`Miro`
 
 #### Generating the depth map
 Thanks to the runway HTTP Server we can use our needed model from the browser.
 With some lines of Javascript we can send an image as a blob from the browser to RunwayML. Runway then generates a depthmap of the sent image. The depthmap is an image with the same dimensions as the input image but is just in grayscale. As closer to the camera things are, the darker they are on the depthmap image - as further away, the lighter they are.
 
 **Example**
-<img src="./doc/DenseDepth-example.jpg" alt="Example Image" style="width:40%; margin-right:20px;"/>
- - 
-<img src="./doc/DenseDepth-example-depthmap.png" alt="Example Image Depthmap" style="width:40%;"/>
-
-![Example Image](./doc/DenseDepth-example.jpg)
-![Example Image Depthmap](./doc/DenseDepth-example-depthmap.png)
+![Example Image Depthmap](./doc/depthmap-example.png)
 
 
 ## Webapplication / Usage :computer:
 We created a web application using [Vue.js](https://vuejs.org/).
 
+
+
 To run the project locally, you have to run the following commands.
-Additionally it's necessary to run [RunwayML](https://runwayml.com/) with a [DenseDepth](https://github.com/agermanidis/DenseDepth) model. In there you need to go to `Network` and make sure the HTTP Server Address is `http://localhost:8000`. If you use an other port, you have to change that in the file [`src/components/DepthImage.vue`](.src/components/DepthImage.vue).
+Additionally it's necessary to run [RunwayML](https://runwayml.com/) with a [DenseDepth](https://github.com/agermanidis/DenseDepth) model. In there you need to go to `Network` and make sure the HTTP Server Address is `http://localhost:8000`. If you use an other port, you have to change that in the file [`src/components/DepthImage.vue`](src/components/DepthImage.vue).
 
 ### Project setup
 ```sh
