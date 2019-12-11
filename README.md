@@ -15,6 +15,9 @@ For us it was clear, that it should be a program running in a browser so you don
 ## Process :books:
 After some research we started to put our ideas into code.
 
+#### Layers of the Network
+`Miro`
+
 #### Transform model to TensorflowJS
 Our first and biggest problem was to transform the DenseDepth model to TensorflowJS, so we could use it in the browser directly without any API calls to RunwayML. We didn't manage to convert the existing model because of it's use of custom Layers like 'BilinearUpSampling2D' so we tried to replace it with 'UpSampling2D' which is supported by TF.js, then retrain the model and finally convert it to the format needed by TF.js. The changes we made can be seen here: [DenseDepth Repo](https://github.com/mirobossert/DenseDepth)
 
@@ -37,15 +40,15 @@ We used the cloud service 'paperspace' with a P6000 machine for training. The st
 
 #### Generating the depth map
 Thanks to the runway HTTP Server we can use our needed model from the browser.
-With some lines of Javascript we can send an image as a blob from the browser to RunwayML. Runway then generates a depthmap of the sent image. The depthmap is an image with the same dimensions as the input image but is just in grayscale. As closer to the camera things are, the darker they are on the depthmap image - as further away, the lighter they are.
+With some lines of Javascript we can send an image as a blob from the browser to RunwayML. Runway then generates a depthmap of the sent image. The depthmap is an image with the same dimensions as the input image but is just in grayscale. As closer to the camera objects are, the darker they are on the depthmap image - as further away, the lighter they are.
 
 **Example**
 ![Example Image Depthmap](./doc/depthmap-example.png)
 
 ## Webapplication :computer:
 We developed a web application using [Vue.js](https://vuejs.org/).
-As a first step the user can upload an image from its computer. As soon as the browser created a blob of the image, the magic can begin. :tada:
-`André`
+As a first step the user can upload an image from its computer. As soon as the browser created a blob of the image, the application sends the image to runway and gets back the depthmap of the image.
+Using WebGL we project the original image on the canvas element. In the shaders, we can recalculate the value of each pixel with the depthmap and the current mouse position. That's actually the magic - if the neural network was able to create an accurate depthmap, the effect is quite nice. :tada:
 
 ## Usage :electric_plug:
 To run the project locally, you have to run the following commands.
