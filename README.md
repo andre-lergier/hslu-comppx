@@ -7,7 +7,7 @@ This project was created in the course **Computational Perception extended COMPP
 * [André Lergier](https://github.com/andre-lergier)
 
 ## Idea / Target :dart:
-The entire group was amazed by the possibilities of machine learning in image processing. Using [RunwayML](https://runwayml.com/), we could try out different models with different inputs and decided later to create a something using the depth of an image. We had ideas like generating a bokeh portrait effect or an interactive 3D depth effect. 
+The entire group was amazed by the possibilities of machine learning in image processing. Using [RunwayML](https://runwayml.com/), we could try out different models with different inputs and decided later to create a something using the depth of an image. We had ideas like generating a bokeh portrait effect or an interactive 3D depth effect.
 Because quite every smartphone today can create those fake portrait images, we decided to focus on the 3d depth effect idea. We wanted to create something fancy showing people what an AI can do.
 
 For us it was clear, that it should be a program running in a browser so you don't need to install an extra software.
@@ -16,10 +16,24 @@ For us it was clear, that it should be a program running in a browser so you don
 After some research we started to put our ideas into code.
 
 #### Transform model to TensorflowJS
-Our first and biggest problem was to transform the DensDepth model to TensorflowJS, so we could use it in the browser without any big dependency.
+Our first and biggest problem was to transform the DenseDepth model to TensorflowJS, so we could use it in the browser directly without any API calls to RunwayML. We didn't manage to convert the existing model because of it's use of custom Layers like 'BilinearUpSampling2D' so we tried to replace it with 'UpSampling2D' which is supported by TF.js, then retrain the model and finally convert it to the format needed by TF.js. The changes we made can be seen here: [DenseDepth Repo](https://github.com/mirobossert/DenseDepth)
 
 #### Training the model
-`Miro`
+We used the cloud service 'paperspace' with a P6000 machine for training. The steps we followed/things we learned:
+* The downloading of the dataset directly to the remote machine was a bit complicated because it was hosted on GoogleDrive. This workaround helped to download the file: https://unix.stackexchange.com/a/332277
+* To use the GPU for training the conda env had to be set up as follows ([TF build configurations](https://www.tensorflow.org/install/source#tested_build_configurations)):
+
+  ```shell
+  conda create -n densedepth pip python=3.7 cudnn cupti cudatoolkit=10.0
+
+  conda activate densedepth
+
+  pip install tensorflow-gpu==1.13.1 keras pillow matplotlib scikit-learn scikit-image opencv-python pydot
+  ```
+
+* To prevent the training process from stopping on the remote machine we used the very useful `screen` utility.
+* Now we were able to train the Model, but upon saving the .h5 file to the disk an error occured: `TypeError('Not JSON Serializable...`. After the fixes explained here it worked: https://github.com/keras-team/keras/issues/9342#issuecomment-396056333
+* After training the model for one epoch we tried to convert it into a TensorFlow.js and tried to run it in the browser. Unfortunatly we weren't able to run it. As it appeared there was still an issue with the custom layers implemented in keras which were not compatible with TF.js so we decided to build our project using the RunwayML Network API.
 
 #### Generating the depth map
 Thanks to the runway HTTP Server we can use our needed model from the browser.
@@ -27,7 +41,6 @@ With some lines of Javascript we can send an image as a blob from the browser to
 
 **Example**
 ![Example Image Depthmap](./doc/depthmap-example.png)
-
 
 ## Webapplication :computer:
 We developed a web application using [Vue.js](https://vuejs.org/).
