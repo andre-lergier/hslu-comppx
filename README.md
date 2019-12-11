@@ -1,4 +1,4 @@
-# AI based 3D Image generator
+# ML based 3D Image generator
 This project was created in the course **Computational Perception extended COMPPX** from Digital Ideation at HSLU.
 
 #### Students
@@ -20,7 +20,7 @@ Our first and biggest problem was to transform the DenseDepth model to Tensorflo
 
 #### Training the model
 We used the cloud service 'paperspace' with a P6000 machine for training. The steps we followed/things we learned:
-* The downloading of the dataset directly to the remote machine was a bit complicated because it was hosted on GoogleDrive. This workaround helped to download the file: https://unix.stackexchange.com/a/332277
+* The downloading of the dataset directly to the remote machine was a bit complicated because it was hosted on GoogleDrive. This workaround helped to download the file: [Download large GDrive files using terminal](https://unix.stackexchange.com/a/332277)
 * To use the GPU for training the conda env had to be set up as follows ([TF build configurations](https://www.tensorflow.org/install/source#tested_build_configurations)):
 
   ```shell
@@ -32,7 +32,7 @@ We used the cloud service 'paperspace' with a P6000 machine for training. The st
   ```
 
 * To prevent the training process from stopping on the remote machine we used the very useful `screen` utility.
-* Now we were able to train the Model, but upon saving the .h5 file to the disk an error occured: `TypeError('Not JSON Serializable...`. After the fixes explained here it worked: https://github.com/keras-team/keras/issues/9342#issuecomment-396056333
+* Now we were able to train the Model, but upon saving the .h5 file to the disk an error occured: `TypeError('Not JSON Serializable...`. After the fixes explained here it worked: [Save Model Fix](https://github.com/keras-team/keras/issues/9342#issuecomment-396056333)
 * After training the model for one epoch we tried to convert it into a TensorFlow.js and tried to run it in the browser. Unfortunatly we weren't able to run it. As it appeared there was still an issue with the custom layers implemented in keras which were not compatible with TF.js so we decided to build our project using the RunwayML Network API.
 
 #### Generating the depth map
