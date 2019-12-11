@@ -15,11 +15,8 @@ For us it was clear, that it should be a program running in a browser so you don
 ## Process :books:
 After some research we started to put our ideas into code.
 
-#### Layers of the Network
-`Miro`
-
 #### Transform model to TensorflowJS
-Our first and biggest problem was to transform the DenseDepth model to TensorflowJS, so we could use it in the browser directly without any API calls to RunwayML. We didn't manage to convert the existing model because of it's use of custom Layers like 'BilinearUpSampling2D' so we tried to replace it with 'UpSampling2D' which is supported by TF.js, then retrain the model and finally convert it to the format needed by TF.js. The changes we made can be seen here: [DenseDepth Repo](https://github.com/mirobossert/DenseDepth)
+Our first and biggest problem was to transform the DenseDepth model to TensorflowJS, so we could use it in the browser directly without any API calls to RunwayML. We didn't manage to convert the existing model because of it's use of custom Layers like `BilinearUpSampling2D` so we tried to replace it with `UpSampling2D` which is supported by TF.js, then retrain the model and finally convert it to the format needed by TF.js. The changes we made can be seen here: [DenseDepth Repo](https://github.com/mirobossert/DenseDepth)
 
 #### Training the model
 We used the cloud service 'paperspace' with a P6000 machine for training. The steps we followed/things we learned:
