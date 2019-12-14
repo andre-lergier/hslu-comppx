@@ -47,6 +47,14 @@ We developed a web application using [Vue.js](https://vuejs.org/).
 As a first step the user can upload an image from its computer. As soon as the browser created a blob of the image, the application sends the image to runway and gets back the depthmap of the image.
 Using WebGL we project the original image on the canvas element. In the shaders, we can recalculate the value of each pixel with the depthmap and the current mouse position. That's actually the magic - if the neural network was able to create an accurate depthmap, the effect is quite nice. :tada:
 
+**1. Image Upload**
+![Demo image upload webapplication](./doc/3d-image-generator-upload.gif)
+
+**2. Enjoy 3D effect**
+![Demo 3D effect webapplication](./doc/3d-image-generator-3d-effect.gif)
+
+Screencast as a video:[`doc/3d-image-generator-screencast.mp4`](doc/3d-image-generator-screencast.mp4)
+
 ## Usage :electric_plug:
 To run the project locally, you have to run the following commands.
 Additionally it's necessary to run [RunwayML](https://runwayml.com/) with a [DenseDepth](https://github.com/agermanidis/DenseDepth) model. In there you need to go to `Network` and make sure the HTTP Server Address is `http://localhost:8000`. If you use an other port, you have to change that in the file [`src/components/DepthImage.vue`](src/components/DepthImage.vue).
